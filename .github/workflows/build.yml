@@ -13,6 +13,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install Tools
+        run: brew install cmake ninja make
+
+      - name: Clone ios-cmake
+        run: git clone https://github.com/leetal/ios-cmake.git ios-cmake
+
       - name: Setup cmake
         run: brew install cmake ninja
 

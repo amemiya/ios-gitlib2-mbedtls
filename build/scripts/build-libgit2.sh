@@ -10,7 +10,7 @@ MB_LIBS="$(pwd)/build/mbedtls-ios/library/libmbedtls.a;$(pwd)/build/mbedtls-ios/
 
 git clone https://github.com/libgit2/libgit2.git "$SRC_DIR" || true
 cmake -S "$SRC_DIR" -B "$BUILD_DIR" \
-  -DCMAKE_TOOLCHAIN_FILE="$(xcrun --find cmake)/../../share/ios-cmake/ios.toolchain.cmake" \
+  -DCMAKE_TOOLCHAIN_FILE="$(pwd)/ios-cmake/ios.toolchain.cmake" \
   -DPLATFORM=OS64 \
   -DUSE_SSH=ON \
   -DBUILD_SHARED_LIBS=OFF \
