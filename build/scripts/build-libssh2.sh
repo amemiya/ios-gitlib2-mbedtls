@@ -11,7 +11,8 @@ cmake -S "$SRC_DIR" -B "$BUILD_DIR" \
   -DCMAKE_TOOLCHAIN_FILE="$(pwd)/ios-cmake/ios.toolchain.cmake" \
   -DPLATFORM=OS64 \
   -DENABLE_ZLIB_COMPRESSION=ON \
-  -DCRYPTO_BACKEND=mbedtls \
+  -DLIBSSH2_MBEDTLS=ON \
+  -DLIBSSH2_CRYPTO_BACKEND=mbedtls \
   -DMBEDTLS_INCLUDE_DIRS="$MB_INC" \
   -DMBEDTLS_LIBRARY="$MB_LIB/libmbedtls.a" \
   -DMBEDX509_LIBRARY="$MB_LIB/libmbedx509.a" \
