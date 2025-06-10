@@ -1,0 +1,55 @@
+name: Build and Release libgit2 iOS
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup cmake
+        run: brew install cmake ninja
+
+      - run: chmod +x build/scripts/*.sh
+
+      - name: Build mbedTLS
+        run: build/scripts/build-mbedtls.sh
+
+      - name: Build libssh2
+        run: build/scripts/build-libssh2.sh
+
+      - name: Build libgit2
+        run: build/scripts/build-libgit2.sh
+
+      - name: Create XCFramework
+        run: build/scripts/create-xcframework.sh
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: libgit2-ios-xcframework
+          path: build/output/libgit2.xcframework
+
+      - name: Create Release
+        id: release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          asset_path: build/output/libgit2.xcframework
+          asset_name: libgit2.xcframework
+          asset_content_type: application/octet-stream
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
