@@ -27,7 +27,6 @@ jobs:
           source venv/bin/activate
           pip install --upgrade pip
           pip install jsonschema
-          echo "source $PWD/venv/bin/activate" >> $GITHUB_ENV
         shell: bash
 
       - run: chmod +x build/scripts/*.sh
