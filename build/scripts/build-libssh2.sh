@@ -8,7 +8,7 @@ MB_LIB=$(pwd)/build/mbedtls-ios/library
 
 git clone https://github.com/libssh2/libssh2.git "$SRC_DIR" || true
 cmake -S "$SRC_DIR" -B "$BUILD_DIR" \
-  -DCMAKE_TOOLCHAIN_FILE="$(xcrun --find cmake)/../../share/ios-cmake/ios.toolchain.cmake" \
+  -DCMAKE_TOOLCHAIN_FILE="$(pwd)/ios-cmake/ios.toolchain.cmake" \
   -DPLATFORM=OS64 \
   -DENABLE_ZLIB_COMPRESSION=ON \
   -DCRYPTO_BACKEND=mbedtls \

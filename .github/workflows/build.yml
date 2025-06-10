@@ -19,9 +19,6 @@ jobs:
       - name: Clone ios-cmake
         run: git clone https://github.com/leetal/ios-cmake.git ios-cmake
 
-      - name: Setup cmake
-        run: brew install cmake ninja
-
       - run: chmod +x build/scripts/*.sh
 
       - name: Build mbedTLS
