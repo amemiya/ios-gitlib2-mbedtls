@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Tools
-        run: brew install cmake ninja make xyz
+        run: brew install cmake ninja make
 
       - name: Clone ios-cmake
         run: git clone https://github.com/leetal/ios-cmake.git ios-cmake
@@ -24,7 +24,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python3 -m pip install --upgrade pip
-          pip install jsonschema
+          python3 -m pip install jsonschema
 
       - run: chmod +x build/scripts/*.sh
 
