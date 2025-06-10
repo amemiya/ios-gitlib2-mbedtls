@@ -17,6 +17,7 @@ cmake -S "$SRC_DIR" -B "$BUILD_DIR" \
   -DMBEDTLS_LIBRARY="$MB_LIB/libmbedtls.a" \
   -DMBEDX509_LIBRARY="$MB_LIB/libmbedx509.a" \
   -DMBEDCRYPTO_LIBRARY="$MB_LIB/libmbedcrypto.a" \
-  -DCMAKE_BUILD_TYPE=Release
+  -DCMAKE_BUILD_TYPE=Release \
+  -DBUILD_SHARED_LIBS=OFF
 
 cmake --build "$BUILD_DIR" --config Release
