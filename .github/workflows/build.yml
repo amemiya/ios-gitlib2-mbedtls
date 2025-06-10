@@ -2,6 +2,8 @@ name: Build and Release libgit2 iOS
 
 on:
   push:
+    branches:
+      - master
     tags:
       - 'v*.*.*'
   workflow_dispatch:
@@ -21,9 +23,7 @@ jobs:
 
       - name: Install Python dependencies
         run: |
-          python3 -m venv venv
-          source venv/bin/activate
-          pip install --upgrade pip
+          python3 -m pip install --upgrade pip
           pip install jsonschema
 
       - run: chmod +x build/scripts/*.sh
