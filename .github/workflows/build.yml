@@ -19,6 +19,11 @@ jobs:
       - name: Clone ios-cmake
         run: git clone https://github.com/leetal/ios-cmake.git ios-cmake
 
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install jsonschema
+
       - run: chmod +x build/scripts/*.sh
 
       - name: Build mbedTLS
