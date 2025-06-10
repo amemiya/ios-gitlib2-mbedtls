@@ -26,7 +26,7 @@ jobs:
           python3 -m venv venv
           source venv/bin/activate
           pip install --upgrade pip
-          pip install jsonschema
+          pip install jsonschema jinja2
         shell: bash
 
       - run: chmod +x build/scripts/*.sh
