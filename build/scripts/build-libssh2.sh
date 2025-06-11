@@ -28,5 +28,6 @@ cmake -S "$SRC_DIR" -B "$BUILD_DIR" \
   -DBUILD_TESTS=OFF \
   -CRYPTO_BACKEND=mbedtls \
   -DBUILD_EXAMPLES=OFF \
+  -DUSE_MBEDTLS=ON
 
 cmake --build "$BUILD_DIR" --target install >/dev/null 2>/dev/null
