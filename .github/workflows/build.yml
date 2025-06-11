@@ -69,6 +69,4 @@ jobs:
       - name: Show CMake logs on failure
         if: failure()
         run: |
-          ls -la build/libssh2-ios/CMakeFiles
-          cat build/libssh2-ios/CMakeFiles/CMakeOutput.log || true
-          cat build/libssh2-ios/CMakeFiles/CMakeError.log || true
+          cat build/libssh2-ios/CMakeFiles/CMakeConfigureLog.yaml || true
