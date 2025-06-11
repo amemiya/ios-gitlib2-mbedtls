@@ -11,7 +11,7 @@ export OPENSSL_LIBRARIES=""
 export OPENSSL_INCLUDE_DIR=""
 
 git clone https://github.com/libssh2/libssh2.git "$SRC_DIR" || true
-cmake -S "$SRC_DIR" -B "$BUILD_DIR" --verbose \
+cmake -S "$SRC_DIR" -B "$BUILD_DIR" \
   -DCMAKE_TOOLCHAIN_FILE="$(pwd)/ios-cmake/ios.toolchain.cmake" \
   -DPLATFORM=OS64 \
   -DENABLE_ZLIB_COMPRESSION=ON \
