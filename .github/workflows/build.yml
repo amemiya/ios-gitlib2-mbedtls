@@ -66,3 +66,8 @@ jobs:
           asset_content_type: application/octet-stream
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Show CMake logs on failure
+        if: failure()
+        run: |
+          cat $(pwd)/build/libssh2-ios/CMakeFiles/CMakeOutput.log || true
+          cat $(pwd)/build/libssh2-ios/CMakeFiles/CMakeError.log || true
