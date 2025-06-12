@@ -11,19 +11,16 @@ export OPENSSL_LIBRARIES=""
 export OPENSSL_INCLUDE_DIR=""
 
 git clone https://github.com/libssh2/libssh2.git "$SRC_DIR" || true
+
+mkdir -p $BUILD_DIR && cd $BUILD_DIR
+
 cmake -S "$SRC_DIR" -B "$BUILD_DIR" \
-  -DCMAKE_TOOLCHAIN_FILE="$(pwd)/ios-cmake/ios.toolchain.cmake" \
-  -DPLATFORM=OS64 \
-  -DENABLE_ZLIB_COMPRESSION=ON \
-  -DENABLE_DEBUG_LOGGING=ON \
-  -DCRYPTO_BACKEND=mbedtls \
-  -DMBEDTLS_INCLUDE_DIR="$MB_INC" \
-  -DMBEDTLS_LIBRARY_DIR="$MB_LIB" \
-  -DMBEDTLS_LIBRARY="$MB_LIB/libmbedtls.a" \
-  -DMBEDX509_LIBRARY="$MB_LIB/libmbedx509.a" \
-  -DMBEDCRYPTO_LIBRARY="$MB_LIB/libmbedcrypto.a" \
   -DCMAKE_BUILD_TYPE=Release \
-  -DBUILD_SHARED_LIBS=OFF \
-  -DBUILD_EXAMPLES=OFF
+  -DCMAKE_OSX_SYSROOT=iphoneos \
+  -DCMAKE_OSX_ARCHITECTURES=arm64 \
+  -DCMAKE_PREFIX_PATH=$(pwd)/../../install/mbedtls-ios \
+  -DLIBSSH2_USE_MBEDTLS=ON \
+  -DENABLE_ZLIB_COMPRESSION=ON \
+  -DBUILD_SHARED_LIBS=OFF
 
 cmake --build "$BUILD_DIR" --target install
