@@ -26,4 +26,4 @@ cmake -S "$SRC_DIR" -B "$BUILD_DIR" \
   -DBUILD_SHARED_LIBS=OFF \
   -DBUILD_EXAMPLES=OFF
 
-cmake --build "$BUILD_DIR" --target install >/dev/null 2>/dev/null
+cmake --build "$BUILD_DIR" --target install
