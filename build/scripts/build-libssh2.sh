@@ -10,6 +10,9 @@ export OPENSSL_ROOT_DIR=""
 export OPENSSL_LIBRARIES=""
 export OPENSSL_INCLUDE_DIR=""
 
+unset OPENSSL_ROOT_DIR
+unset PKG_CONFIG_PATH
+
 git clone https://github.com/libssh2/libssh2.git "$SRC_DIR" || true
 
 mkdir -p $BUILD_DIR && cd $BUILD_DIR
@@ -19,6 +22,7 @@ cmake -S "$SRC_DIR" -B "$BUILD_DIR" \
   -DCMAKE_OSX_SYSROOT=iphoneos \
   -DCMAKE_OSX_ARCHITECTURES=arm64 \
   -DCMAKE_PREFIX_PATH=$(pwd)/../../install/mbedtls-ios \
+  -DLIBSSH2_USE_OPENSSL=OFF \
   -DLIBSSH2_USE_MBEDTLS=ON \
   -DENABLE_ZLIB_COMPRESSION=ON \
   -DBUILD_SHARED_LIBS=OFF
